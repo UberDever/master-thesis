@@ -1,14 +1,18 @@
 FROM alpine:latest AS font-builder
 
+ADD ./fonts /tmp
+
 RUN apk --update add openssl wget unzip \
   && rm -rf /var/cache/apk/* \
   && mkdir -p /fonts \
   && cd /fonts \
-  && wget http://astralinux.ru/information/fonts-astra/font-ptastra-serif-ver1003.zip \
-  && wget http://astralinux.ru/information/fonts-astra/font-ptastrasans-ttf-ver1002.zip \
-  && unzip font-ptastra-serif-ver1003.zip \
-  && unzip font-ptastrasans-ttf-ver1002.zip \
-  && rm -rf *.zip \
+  && cp -r /tmp/* /fonts \
+#  && cd /fonts \
+#  && wget http://astralinux.ru/information/fonts-astra/font-ptastra-serif-ver1003.zip \
+#  && wget http://astralinux.ru/information/fonts-astra/font-ptastrasans-ttf-ver1002.zip \
+#  && unzip font-ptastra-serif-ver1003.zip \
+#  && unzip font-ptastrasans-ttf-ver1002.zip \
+#  && rm -rf *.zip \
   && apk add msttcorefonts-installer \
   && update-ms-fonts 
 
@@ -49,6 +53,8 @@ RUN chmod -R 644 /usr/share/fonts/truetype/astra/* \
   && fc-cache -f -v
 
 WORKDIR /doc
+ADD . /doc
+
 COPY ./docker/scripts /scripts
 
 ENTRYPOINT ["/scripts/boot.sh"]
