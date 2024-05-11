@@ -42,9 +42,11 @@ build() {
 	rm -rf "$tmpdir"
 }
 
-mkdir "$RESDIR"
-chmod a=rwx "$RESDIR"
+if [ -z "$RESDIR" ]; then
+	mkdir "$RESDIR"
+	chmod a=rwx "$RESDIR"
+fi
 
-for latex in pdflatex xelatex; do
+for latex in xelatex; do
 	build cmake ${latex}
 done

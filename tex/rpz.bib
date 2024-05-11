@@ -1,20 +1,106 @@
-@Comment А вот так оформляется библиография при помощи BibTeX.
 
-@Book{Pup09,
-  author =		 {Василий Пупкин and Эйнштейн, А.},
-  title = 		 {\LaTeX для <<чайников>>},
-  publisher = 	 {М.},
-  pagetotal = {299},
-  year = 		 {2009},
+
+@inproceedings{empirical-analysis,
+    author = {Mayer, Philip and Bauer, Alexander},
+    year = {2015},
+    month = {04},
+    pages = {},
+    title = {An Empirical Analysis of the Utilization of Multiple Programming Languages in Open Source Projects},
+    doi = {10.1145/2745802.2745805},
+}
+
+@inproceedings{professional-developers,
+author = {Mayer, Philip and Kirsch, Michael and Le, Minh-Anh},
+year = {2017},
+month = {12},
+pages = {},
+title = {On multi-language software development, cross-language links and accompanying tools: a survey of professional software developers},
+volume = {5},
+journal = {Journal of Software Engineering Research and Development},
+doi = {10.1186/s40411-017-0035-z}
+}
+
+@book{static-program-analysis,
+  author =       {Anders M\o{}ller and Michael I. Schwartzbach},
+  title =        {Static Program Analysis},
+  year =         {2018},
+  month =        {October},
+  note =         {Department of Computer Science, Aarhus University,
+                  \texttt{http://cs.au.dk/\~{}amoeller/spa/}},
+}
+
+@online{qt-moc,
+  author = {Qt Foundation},
+  title = {Метаобъектный компилятор Qt 6},
+  year = {2024},
+  url = {https://doc.qt.io/qt-6/metaobjects.html},
+  urldate = {25.03.2024},
   language =     "russian"
 }
 
-@online{wiki:latex,
-  author = {Wikipedia},
-  title = {Типографика "--- Википедия},
-  year = {2012},
-  url = {https://ru.wikipedia.org/wiki/%D0%A2%D0%B8%D0%BF%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%B0},
-  urldate = {25.01.2012},
+@online{react,
+  author = {React Community},
+  title = {Фреймворк React},
+  year = {2024},
+  url = {https://react.dev/},
+  urldate = {25.03.2024},
   language =     "russian"
+}
+
+@dataset{aid-developers,
+author = {Pfeiffer, Helge and Wasowski, Andrzej},
+year = {2015},
+month = {07},
+pages = {},
+title = {Cross-Language Support Mechanisms Significantly Aid Software Development}
+}
+
+@book{Johnson1978LintAC,
+  title={Lint, a C Program Checker},
+  author={S. C. Johnson and Murray Hill},
+  year={1978},
+  url={https://api.semanticscholar.org/CorpusID:59749883},
+  language = "russian"
+}
+
+@article{pragmatic-evidence,
+title = {Pragmatic evidence of cross-language link detection: A systematic literature review},
+journal = {Journal of Systems and Software},
+volume = {206},
+pages = {111825},
+year = {2023},
+issn = {0164-1212},
+doi = {https://doi.org/10.1016/j.jss.2023.111825},
+url = {https://www.sciencedirect.com/science/article/pii/S0164121223002200},
+author = {Saira Latif and Zaigham Mushtaq and Ghulam Rasool and Furqan Rustam and Naila Aslam and Imran Ashraf},
+keywords = {Software development, Reverse engineering, Multilingual source code, Cross-language link detection, Source code analysis, Cross-language dependencies, Multilingual software applications, Graph databases, Machine learning in software engineering, Software maintenance, Systematic literature review},
+language = "russian"
+}
+
+@INPROCEEDINGS{island-grammars, 
+author={Moonen, L.}, 
+booktitle={Proceedings Eighth Working Conference on Reverse Engineering}, 
+title={Generating robust parsers using island grammars}, 
+year={2001}, 
+volume={}, 
+number={}, 
+pages={13-22}, 
+keywords={Robustness;Reverse engineering;Maintenance engineering;Data mining;Mars;Application software;Software maintenance;Computer languages;Transaction databases;Libraries}, doi={10.1109/WCRE.2001.957806}}
+
+@InProceedings{external-dependencies,
+author="Hosry, Aless
+and Anquetil, Nicolas",
+editor="Fernandes, Jos{\'e} Maria
+and Travassos, Guilherme H.
+and Lenarduzzi, Valentina
+and Li, Xiaozhou",
+title="External Dependencies in Software Development",
+booktitle="Quality of Information and Communications Technology",
+year="2023",
+publisher="Springer Nature Switzerland",
+address="Cham",
+pages="215--232",
+abstract="Successful software requires constant modifications. To guarantee the continuous proper functioning of the applications, developers need to understand them well, particularly by having an accurate map of the dependencies between the parts they are modifying. However, some of these dependencies are not easily identified. For example, in an Android application, there are dependencies between the Java source code and XML parts, some of which are materialized by a generated ``R'' Java class. We call such dependencies external because they are introduced by some agent external to the source code. On top of the categorization of dependencies defined in the literature, we define restrictions on the External Dependencies that allow us to verify the source code and identify possible flaws. We created a common approach relying on reusable patterns to search for containers and entities that are part of such dependencies and implemented it in a prototype that we validate on two different projects from GitHub and developed using different frameworks.",
+isbn="978-3-031-43703-8"
 }
 
