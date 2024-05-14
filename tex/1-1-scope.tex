@@ -156,28 +156,28 @@
 Для понимания возможных проблем, рассмотрим следующий фрагмент кода на C++:
 
 \begin{minted}[linenos=true]{cpp}
-// function.h
-#include <stdio.h>
-template <typename T>
-T f(T a) {
-#ifdef SOMEBAR
-    return a * 2;
-#else
-    return a + 2;
-#endif
-}
+    // function.h
+    #include <stdio.h>
+    template <typename T>
+    T f(T a) {
+    #ifdef SOMEBAR
+        return a * 2;
+    #else
+        return a + 2;
+    #endif
+    }
 
-// main.cpp
-#include "function.h"
-int main()
-{
-#ifdef SOMEFOO
-    printf("%f", f<float>(10));
-#else
-    printf("%d", f<int>(5));
-#endif
-    return 0;
-}
+    // main.cpp
+    #include "function.h"
+    int main()
+    {
+    #ifdef SOMEFOO
+        printf("%f", f<float>(10));
+    #else
+        printf("%d", f<int>(5));
+    #endif
+        return 0;
+    }
 \end{minted}
 
 Представим что есть два файла, <<function.h>> и <<main.cpp>>. Фрагменты, соответствующие файлам, помечены
