@@ -17,8 +17,9 @@
 \include{macros.inc}
 
 % Стиль титульного листа и заголовки
-\include{00-title}
+%\include{00-title}
 
+\setcounter{page}{4}
 
 \begin{document}
 
@@ -34,9 +35,9 @@
 %% \end{executors}
 
 
-\listoffigures                         % Список рисунков
+% \listoffigures                         % Список рисунков
 
-\listoftables                          % Список таблиц
+% \listoftables                          % Список таблиц
 
 %\NormRefs % Нормативные ссылки 
 % Команды \breakingbeforechapters и \nonbreakingbeforechapters
@@ -46,7 +47,7 @@
 % \nobreakingbeforechapters
 % \breakingbeforechapters
 
-\include{00-abstract}
+% \include{00-abstract}
 
 \tableofcontents
 
@@ -66,11 +67,9 @@
 
 \backmatter %% Здесь заканчивается нумерованная часть документа и начинаются ссылки и
             
-%% \include{80-conclusion}%% заключение
-
+\include{80-conclusion}%% заключение
 
 \include{81-biblio}
-
 
 \appendix   % Тут идут приложения
 
