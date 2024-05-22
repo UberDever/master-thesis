@@ -3,122 +3,127 @@ export type URI = string;
 export type integer = number;
 export type uinteger = number;
 
-interface Position {
+export interface Position {
     line: uinteger
     character: uinteger
 }
 
-interface Range {
+export interface Range {
     start: Position
     end: Position
 }
 
-interface SourceFile {
+interface From {
+    language: string | undefined
+}
+
+export interface SourceFile extends From {
     uri: URI
     range?: Range
 }
 
-interface SourceCode {
+export interface SourceCode extends From {
     code: string
 }
 
-type Source = SourceFile | SourceCode
+// TODO: здесь должны учитываться многие возможные локации (см LocationLink[])
+export type Source = SourceFile | SourceCode | undefined
 
-interface Identifier {
+export interface Identifier {
     name: string
     source: Source
 }
 
 // По порядку: неизвестные объявления, неизвестные области, неизвестные типы
-type VariableType = "delta" | "sigma" | "tau"
+export type VariableType = "delta" | "sigma" | "tau"
 
-interface Variable {
+export interface Variable {
     index: uinteger
     type: VariableType
 }
 
-interface Scope {
+export interface Scope {
     index: uinteger
-    type: "scope"
+    source: Source
 }
 
-type NameCollectionType = "declared" | "referenced" | "visible"
+export type NameCollectionType = "declared" | "referenced" | "visible"
 
-interface NameCollection {
+export interface NameCollection {
     scope: Variable | Scope
     names: NameCollectionType
 }
 
-interface UsageConstraint {
+export interface UsageConstraint {
     identifier: Identifier
     scope: Variable | Scope
     usage: "declaration" | "reference"
 }
 
-interface ResolutionConstraint {
+export interface ResolutionConstraint {
     reference: Identifier
     declaration: Variable
 }
 
-interface UniquenessConstraint {
+export interface UniquenessConstraint {
     names: NameCollection
 }
 
-interface TypeDeclarationConstraint {
+export interface TypeDeclarationConstraint {
     declaration: Identifier | Variable
     type: Variable
 }
 
 // Непрозрачный, структура зависит от онтологии и системы типов
-type Type = object
+export type Type = Object
 
-interface TypeEqualConstraint {
+export interface TypeEqualConstraint {
     lhs: Variable
     rhs: Variable | Type
 }
 
-interface DirectEdgeConstraint {
+export interface DirectEdgeConstraint {
     from: Variable | Scope
     to: Variable | Scope
     label: string
 }
 
-interface AssociationConstraint {
+export interface AssociationConstraint {
     declaration: Identifier | Variable
-    scope: Variable
+    scope: Variable | Scope
 }
 
-interface NominalEdgeConstraint {
+export interface NominalEdgeConstraint {
     scope: Variable | Scope
     reference: Identifier
     label: string
 }
 
-interface SubsetConstraint {
+export interface SubsetConstraint {
     lhs: NameCollection
     rhs: NameCollection
 }
 
-interface MustResolveConstraint {
+export interface MustResolveConstraint {
     reference: Identifier
     scope: Variable | Scope
 }
 
-interface EssentialConstraint {
+export interface EssentialConstraint {
     declaration: Identifier
     scope: Variable | Scope
 }
 
-interface ExclusiveConstraint {
+export interface ExclusiveConstraint {
     declaration: Identifier
     scope: Variable | Scope
 }
 
-interface IconicConstraint {
+export interface IconicConstraint {
     declaration: Identifier
 }
 
-type Constraint =
+export type Constraint =
     UsageConstraint |
     ResolutionConstraint |
     UniquenessConstraint |
@@ -136,27 +141,27 @@ type Constraint =
 // Для каждого *Response -- сценарий ошибки отдается согласно JSON RPC
 
 
-interface SubtranslationRequest {
+export interface SubtranslationRequest {
     code: Source
     ontology: URI
 }
 
-interface SubtranslationResponse {
+export interface SubtranslationResponse {
     constraints: Constraint[]
     unrecognized: Source
 }
 
 // метод crossy/translate
-type TranslationRequest = SubtranslationRequest
-type TranslationResponse = SubtranslationResponse
+export type TranslationRequest = SubtranslationRequest
+export type TranslationResponse = SubtranslationResponse
 
 // метод crossy/solve
-interface SolveRequest {
+export interface SolveRequest {
     constraints: Constraint[]
     ontology: URI
 }
 
-type Substitution = {
+export type Substitution = {
     tag: "delta"
     data: Identifier
 } | {
@@ -167,33 +172,33 @@ type Substitution = {
     data: Type
 }
 
-interface SolveResponse {
+export interface SolveResponse {
     substitution: Map<Variable, Substitution>
 }
 
 // метод crossy/analyze
 // объединение crossy/translate и crossy/solve с применением полученной подстановки
-interface AnalyzeRequest {
+export interface AnalyzeRequest {
     code: Source
     ontology: URI
 }
 
-interface AnalyzeResponse {
+export interface AnalyzeResponse {
     constraints: Constraint[] // эти ограничения не должны содержать переменных
 }
 
 // метод crossy/configure
-interface ConfigureRequest {
+export interface ConfigureRequest {
     filesystem?: { workspace: URI }
     systemVariables?: boolean
     utilities?: boolean
 }
 
-type FilesystemConfiguration = UsageConstraint | AssociationConstraint | DirectEdgeConstraint // рекурсивное дерево каталогов и файлов относительно проекта
-type SystemVariablesConfiguration = TypeDeclarationConstraint | TypeEqualConstraint // присваивание каждой системной переменной типа/статического значения
-type UtilitiesConfiguration = TypeDeclarationConstraint | TypeEqualConstraint // присваивание каждой утилите (библиотеке, приложению) типа/статического значения
+export type FilesystemConfiguration = UsageConstraint | AssociationConstraint | DirectEdgeConstraint // рекурсивное дерево каталогов и файлов относительно проекта
+export type SystemVariablesConfiguration = TypeDeclarationConstraint | TypeEqualConstraint // присваивание каждой системной переменной типа/статического значения
+export type UtilitiesConfiguration = TypeDeclarationConstraint | TypeEqualConstraint // присваивание каждой утилите (библиотеке, приложению) типа/статического значения
 
-interface ConfigureResponse {
+export interface ConfigureResponse {
     configuration: (FilesystemConfiguration | SystemVariablesConfiguration | UtilitiesConfiguration)[]
-    code: {language: string, source: Source}[]
+    code: { language: string, source: Source }[]
 }
