@@ -155,7 +155,7 @@
 
 Для понимания возможных проблем, рассмотрим следующий фрагмент кода на C++:
 
-\begin{minted}[linenos=true]{cpp}
+\begin{lstlisting}[language=C++,style=simplecode,caption={Пример небольшого проекта на С++}]
     // function.h
     #include <stdio.h>
     template <typename T>
@@ -178,7 +178,7 @@
     #endif
         return 0;
     }
-\end{minted}
+\end{lstlisting}
 
 Представим что есть два файла, <<function.h>> и <<main.cpp>>. Фрагменты, соответствующие файлам, помечены
 комментариями. При статическом анализе такого кода для определения того, какая версия функции в итоге будет

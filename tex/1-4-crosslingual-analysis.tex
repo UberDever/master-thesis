@@ -408,11 +408,11 @@ INI.
 механизм типов пересечений и типов объединений \cite{DEZANICIANCAGLINI1992303}.
 Расширив систему типов таким образом, можно будет присвоить идентификатору сильно ограничивающий тип. В качестве примера можно рассмотреть
 исходный код на языке TypeScript:
-\begin{minted}[linenos=true]{ts}
+\begin{lstlisting}[language=C,style=simplecode,caption={Пример использования типов-объединений в TypeScript}]
     const a: 1 | "a" = 1
     const b: 1 | "a" = "a"
     const c: 1 | "a" = true
-\end{minted}
+\end{lstlisting}
 
 В данном случае определение типа \texttt{1 | "a"} указывает, что идентификатор с такой типовой аннотацией может быть
 привязан либо к значению 1, либо к строке \texttt{"a"}. Таким образом, строка 3 считается ошибочной и в контексте
@@ -444,7 +444,7 @@ INI.
 
 В качестве примера работы такого механизма можно рассмотреть следующий код на C\# взятый из примера проекта на платформе dotnet \cite{eShopOnWeb}:
 
-\begin{minted}[linenos=true, breaklines]{csharp}
+\begin{lstlisting}[language=Java,style=simplecode,caption={Контроллер на языке C\#}]
     [ApiExplorerSettings(IgnoreApi = true)]
     [Authorize]
     [Route("controller/action")]
@@ -480,7 +480,7 @@ INI.
             return View(viewModel);
         }
     }
-\end{minted}
+\end{lstlisting}
 
 Вышеприведенный класс имеет большое количество различных аннотаций (как в определении класса, так и в определении
 методов). Также, он наследует от класса \texttt{Controller}. Однако, на уровне межъязыковых связей, можно
